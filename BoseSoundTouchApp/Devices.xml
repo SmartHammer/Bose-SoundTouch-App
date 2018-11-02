@@ -1,0 +1,409 @@
+<root xmlns="urn:schemas-upnp-org:device-1-0">
+  <specVersion>
+    <major>1</major>
+    <minor>0</minor>
+  </specVersion>
+  <device>
+    <deviceType>urn:schemas-upnp-org:device:MediaRenderer:1</deviceType>
+    <friendlyName>SoundTouch 20 Kitchen</friendlyName>
+    <qq:X_QPlay_SoftwareCapability xmlns:qq="http://www.tencent.com">QPlay:2</qq:X_QPlay_SoftwareCapability>
+    <manufacturer>Bose Corporation</manufacturer>
+    <manufacturerURL>http://www.bose.com</manufacturerURL>
+    <modelName>SoundTouch 20</modelName>
+    <modelNumber></modelNumber>
+    <modelDescription>Bose SoundTouch Wireless Streaming Audio Device</modelDescription>
+    <modelURL>http://www.bose.com</modelURL>
+    <serialNumber>A81B6AC48026</serialNumber>
+    <UDN>uuid:BO5EBO5E-F00D-F00D-FEED-A81B6AC48026</UDN>
+    <serviceList>
+      <service>
+        <serviceType>urn:schemas-upnp-org:service:AVTransport:1</serviceType>
+        <serviceId>urn:upnp-org:serviceId:AVTransport</serviceId>
+        <SCPDURL>/Xml/AVTransport3.xml</SCPDURL>
+        <controlURL>/AVTransport/Control</controlURL>
+        <eventSubURL>/AVTransport/Event</eventSubURL>
+      </service>
+      <service>
+        <serviceType>urn:schemas-upnp-org:service:ConnectionManager:1</serviceType>
+        <serviceId>urn:upnp-org:serviceId:ConnectionManager</serviceId>
+        <SCPDURL>/Xml/ConnectionManager3.xml</SCPDURL>
+        <controlURL>/ConnectionManager/Control</controlURL>
+        <eventSubURL>/ConnectionManager/Event</eventSubURL>
+      </service>
+      <service>
+        <serviceType>urn:schemas-upnp-org:service:RenderingControl:1</serviceType>
+        <serviceId>urn:upnp-org:serviceId:RenderingControl</serviceId>
+        <SCPDURL>/Xml/RenderingControl3.xml</SCPDURL>
+        <controlURL>/RenderingControl/Control</controlURL>
+        <eventSubURL>/RenderingControl/Event</eventSubURL>
+      </service>
+      <service>
+        <serviceType>urn:schemas-tencent-com:service:QPlay:2</serviceType>
+        <serviceId>urn:tencent-com:serviceId:QPlay</serviceId>
+        <controlURL>/QPlay/Control</controlURL>
+        <eventSubURL>/QPlay/Event</eventSubURL>
+        <SCPDURL>/Xml/QPlay.xml</SCPDURL>
+      </service>
+    </serviceList>
+  </device>
+</root>
+
+<root xmlns="urn:schemas-upnp-org:device-1-0">
+  <specVersion>
+    <major>1</major>
+    <minor>0</minor>
+  </specVersion>
+  <device>
+    <deviceType>urn:schemas-upnp-org:device:MediaRenderer:1</deviceType>
+    <friendlyName>SoundTouch 30</friendlyName>
+    <qq:X_QPlay_SoftwareCapability xmlns:qq="http://www.tencent.com">QPlay:2</qq:X_QPlay_SoftwareCapability>
+    <manufacturer>Bose Corporation</manufacturer>
+    <manufacturerURL>http://www.bose.com</manufacturerURL>
+    <modelName>SoundTouch 30</modelName>
+    <modelNumber></modelNumber>
+    <modelDescription>Bose SoundTouch Wireless Streaming Audio Device</modelDescription>
+    <modelURL>http://www.bose.com</modelURL>
+    <serialNumber>9884E3A03E8E</serialNumber>
+    <UDN>uuid:BO5EBO5E-F00D-F00D-FEED-9884E3A03E8E</UDN>
+    <serviceList>
+      <service>
+        <serviceType>urn:schemas-upnp-org:service:AVTransport:1</serviceType>
+        <serviceId>urn:upnp-org:serviceId:AVTransport</serviceId>
+        <SCPDURL>/Xml/AVTransport3.xml</SCPDURL>
+        <controlURL>/AVTransport/Control</controlURL>
+        <eventSubURL>/AVTransport/Event</eventSubURL>
+      </service>
+      <service>
+        <serviceType>urn:schemas-upnp-org:service:ConnectionManager:1</serviceType>
+        <serviceId>urn:upnp-org:serviceId:ConnectionManager</serviceId>
+        <SCPDURL>/Xml/ConnectionManager3.xml</SCPDURL>
+        <controlURL>/ConnectionManager/Control</controlURL>
+        <eventSubURL>/ConnectionManager/Event</eventSubURL>
+      </service>
+      <service>
+        <serviceType>urn:schemas-upnp-org:service:RenderingControl:1</serviceType>
+        <serviceId>urn:upnp-org:serviceId:RenderingControl</serviceId>
+        <SCPDURL>/Xml/RenderingControl3.xml</SCPDURL>
+        <controlURL>/RenderingControl/Control</controlURL>
+        <eventSubURL>/RenderingControl/Event</eventSubURL>
+      </service>
+      <service>
+        <serviceType>urn:schemas-tencent-com:service:QPlay:2</serviceType>
+        <serviceId>urn:tencent-com:serviceId:QPlay</serviceId>
+        <controlURL>/QPlay/Control</controlURL>
+        <eventSubURL>/QPlay/Event</eventSubURL>
+        <SCPDURL>/Xml/QPlay.xml</SCPDURL>
+      </service>
+    </serviceList>
+  </device>
+</root>
+
+<root xmlns="urn:schemas-upnp-org:device-1-0">
+  <specVersion>
+    <major>1</major>
+    <minor>0</minor>
+  </specVersion>
+  <device>
+    <deviceType>urn:schemas-upnp-org:device:MediaRenderer:1</deviceType>
+    <friendlyName>SoundTouch 300 Livingroom</friendlyName>
+    <qq:X_QPlay_SoftwareCapability xmlns:qq="http://www.tencent.com">QPlay:2</qq:X_QPlay_SoftwareCapability>
+    <manufacturer>Bose Corporation</manufacturer>
+    <manufacturerURL>http://www.bose.com</manufacturerURL>
+    <modelName>SoundTouch 300</modelName>
+    <modelNumber></modelNumber>
+    <modelDescription>Bose SoundTouch Wireless Streaming Audio Device</modelDescription>
+    <modelURL>http://www.bose.com</modelURL>
+    <serialNumber>606405F5FD71</serialNumber>
+    <UDN>uuid:BO5EBO5E-F00D-F00D-FEED-606405F5FD71</UDN>
+    <serviceList>
+      <service>
+        <serviceType>urn:schemas-upnp-org:service:AVTransport:1</serviceType>
+        <serviceId>urn:upnp-org:serviceId:AVTransport</serviceId>
+        <SCPDURL>/Xml/AVTransport3.xml</SCPDURL>
+        <controlURL>/AVTransport/Control</controlURL>
+        <eventSubURL>/AVTransport/Event</eventSubURL>
+      </service>
+      <service>
+        <serviceType>urn:schemas-upnp-org:service:ConnectionManager:1</serviceType>
+        <serviceId>urn:upnp-org:serviceId:ConnectionManager</serviceId>
+        <SCPDURL>/Xml/ConnectionManager3.xml</SCPDURL>
+        <controlURL>/ConnectionManager/Control</controlURL>
+        <eventSubURL>/ConnectionManager/Event</eventSubURL>
+      </service>
+      <service>
+        <serviceType>urn:schemas-upnp-org:service:RenderingControl:1</serviceType>
+        <serviceId>urn:upnp-org:serviceId:RenderingControl</serviceId>
+        <SCPDURL>/Xml/RenderingControl3.xml</SCPDURL>
+        <controlURL>/RenderingControl/Control</controlURL>
+        <eventSubURL>/RenderingControl/Event</eventSubURL>
+      </service>
+      <service>
+        <serviceType>urn:schemas-tencent-com:service:QPlay:2</serviceType>
+        <serviceId>urn:tencent-com:serviceId:QPlay</serviceId>
+        <controlURL>/QPlay/Control</controlURL>
+        <eventSubURL>/QPlay/Event</eventSubURL>
+        <SCPDURL>/Xml/QPlay.xml</SCPDURL>
+      </service>
+    </serviceList>
+  </device>
+</root>
+
+<root xmlns="urn:schemas-upnp-org:device-1-0">
+  <specVersion>
+    <major>1</major>
+    <minor>0</minor>
+  </specVersion>
+  <device>
+    <dlna:X_DLNADOC xmlns:dlna="urn:schemas-dlna-org:device-1-0">DMS-1.50</dlna:X_DLNADOC>
+    <dlna:X_DLNADOC xmlns:dlna="urn:schemas-dlna-org:device-1-0">M-DMS-1.50</dlna:X_DLNADOC>
+    <deviceType>urn:schemas-upnp-org:device:MediaServer:1</deviceType>
+    <friendlyName>AVM FRITZ!Mediaserver</friendlyName>
+    <manufacturer>AVM Berlin</manufacturer>
+    <manufacturerURL>http://www.avm.de</manufacturerURL>
+    <modelDescription>FRITZ!Box 6490 Cable (kdg)</modelDescription>
+    <modelName>FRITZ!Box 6490 Cable (kdg)</modelName>
+    <modelNumber>kdg</modelNumber>
+    <modelURL>http://fritz.box</modelURL>
+    <UDN>uuid:fa095ecc-e13e-40e7-8e6c-3431c4f15c3a</UDN>
+    <iconList>
+      <icon>
+        <mimetype>image/bmp</mimetype>
+        <height>32</height>
+        <width>32</width>
+        <depth>24</depth>
+        <url>/FRITZ-Logo-32x32.bmp</url>
+      </icon>
+      <icon>
+        <mimetype>image/jpeg</mimetype>
+        <height>32</height>
+        <width>32</width>
+        <depth>24</depth>
+        <url>/FRITZ-Logo-32x32.jpg</url>
+      </icon>
+      <icon>
+        <mimetype>image/bmp</mimetype>
+        <height>48</height>
+        <width>48</width>
+        <depth>24</depth>
+        <url>/FRITZ-Logo-48x48.bmp</url>
+      </icon>
+      <icon>
+        <mimetype>image/jpeg</mimetype>
+        <height>48</height>
+        <width>48</width>
+        <depth>24</depth>
+        <url>/FRITZ-Logo-48x48.jpg</url>
+      </icon>
+      <icon>
+        <mimetype>image/png</mimetype>
+        <height>48</height>
+        <width>48</width>
+        <depth>24</depth>
+        <url>/FRITZ-Logo-48x48.png</url>
+      </icon>
+      <icon>
+        <mimetype>image/jpeg</mimetype>
+        <height>120</height>
+        <width>120</width>
+        <depth>24</depth>
+        <url>/FRITZ-Logo-120x120.jpg</url>
+      </icon>
+      <icon>
+        <mimetype>image/png</mimetype>
+        <height>120</height>
+        <width>120</width>
+        <depth>24</depth>
+        <url>/FRITZ-Logo-120x120.png</url>
+      </icon>
+    </iconList>
+    <serviceList>
+      <service>
+        <serviceType>urn:schemas-upnp-org:service:ContentDirectory:1</serviceType>
+        <serviceId>urn:upnp-org:serviceId:ContentDirectory</serviceId>
+        <controlURL>/MediaServer/ContentDirectory/Control</controlURL>
+        <eventSubURL>/MediaServer/ContentDirectory/Event</eventSubURL>
+        <SCPDURL>/MediaServerContentDirectory.xml</SCPDURL>
+      </service>
+      <service>
+        <serviceType>urn:schemas-upnp-org:service:ConnectionManager:1</serviceType>
+        <serviceId>urn:upnp-org:serviceId:ConnectionManager</serviceId>
+        <controlURL>/MediaServer/ConnectionManager/Control</controlURL>
+        <eventSubURL>/MediaServer/ConnectionManager/Event</eventSubURL>
+        <SCPDURL>/MediaServerConnectionManager.xml</SCPDURL>
+      </service>
+      <service>
+        <serviceType>urn:microsoft.com:service:X_MS_MediaReceiverRegistrar:1</serviceType>
+        <serviceId>urn:microsoft.com:serviceId:X_MS_MediaReceiverRegistrar</serviceId>
+        <controlURL>/MediaServer/MediaReceiverRegistrar/Control</controlURL>
+        <eventSubURL>/MediaServer/MediaReceiverRegistrar/Event</eventSubURL>
+        <SCPDURL>/MediaReceiverRegistrar.xml</SCPDURL>
+      </service>
+      <service>
+        <serviceType>urn:avm.de:service:AVM_ServerStatus:1</serviceType>
+        <serviceId>urn:avm.de:serviceId:AVM_ServerStatus</serviceId>
+        <controlURL>/MediaServer/ServerStatus/Control</controlURL>
+        <eventSubURL>/MediaServer/ServerStatus/Event</eventSubURL>
+        <SCPDURL>/ServerStatus.xml</SCPDURL>
+      </service>
+    </serviceList>
+    <presentationURL>http://fritz.box</presentationURL>
+  </device>
+</root>
+
+<root xmlns="urn:schemas-upnp-org:device-1-0">
+  <specVersion>
+    <major>1</major>
+    <minor>0</minor>
+  </specVersion>
+  <device>
+    <dlna:X_DLNADOC xmlns:dlna="urn:schemas-dlna-org:device-1-0">DMS-1.50</dlna:X_DLNADOC>
+    <dlna:X_DLNADOC xmlns:dlna="urn:schemas-dlna-org:device-1-0">M-DMS-1.50</dlna:X_DLNADOC>
+    <dlna:X_DLNACAP xmlns:dlna="urn:schemas-dlna-org:device-1-0">av-upload,image-upload,audio-upload,create-item-with-OCM-destroy-item</dlna:X_DLNACAP>
+    <pv:extension xmlns:pv="http://www.pv.com/pvns/"></pv:extension>
+    <pv:platformID xmlns:pv="http://www.pv.com/pvns/">Linux 3.2.26; armv7l</pv:platformID>
+    <deviceType>urn:schemas-upnp-org:device:MediaServer:1</deviceType>
+    <UDN>uuid:55076f6e-6b79-4d65-6436-0090a93fac29</UDN>
+    <friendlyName>WDMyCloud</friendlyName>
+    <manufacturer>Western Digital Corporation</manufacturer>
+    <manufacturerURL>http://www.wdc.com</manufacturerURL>
+    <modelName>WDMyCloud</modelName>
+    <modelURL>http://www.wdc.com/wdmycloud</modelURL>
+    <modelDescription>WD My Cloud</modelDescription>
+    <modelNumber>sq</modelNumber>
+    <serialNumber>7.2.9</serialNumber>
+    <UPC></UPC>
+    <presentationURL>http://192.168.179.24:9000/</presentationURL>
+    <iconList>
+      <icon>
+        <mimetype>image/jpeg</mimetype>
+        <height>48</height>
+        <width>48</width>
+        <depth>24</depth>
+        <url>/images/twonkyicon-48x48.jpg</url>
+      </icon>
+      <icon>
+        <mimetype>image/jpeg</mimetype>
+        <height>120</height>
+        <width>120</width>
+        <depth>24</depth>
+        <url>/images/twonkyicon-120x120.jpg</url>
+      </icon>
+      <icon>
+        <mimetype>image/png</mimetype>
+        <height>48</height>
+        <width>48</width>
+        <depth>24</depth>
+        <url>/images/twonkyicon-48x48.png</url>
+      </icon>
+      <icon>
+        <mimetype>image/png</mimetype>
+        <height>120</height>
+        <width>120</width>
+        <depth>24</depth>
+        <url>/images/twonkyicon-120x120.png</url>
+      </icon>
+    </iconList>
+    <serviceList>
+      <service>
+        <serviceType>urn:schemas-upnp-org:service:ConnectionManager:1</serviceType>
+        <serviceId>urn:upnp-org:serviceId:ConnectionManager</serviceId>
+        <SCPDURL>/TMSConnectionManager.xml</SCPDURL>
+        <eventSubURL>/TMSConnectionManager/Event</eventSubURL>
+        <controlURL>/TMSConnectionManager/Control</controlURL>
+      </service>
+      <service>
+        <serviceType>urn:schemas-upnp-org:service:ContentDirectory:1</serviceType>
+        <serviceId>urn:upnp-org:serviceId:ContentDirectory</serviceId>
+        <SCPDURL>/TMSContentDirectory.xml</SCPDURL>
+        <eventSubURL>/TMSContentDirectory/Event</eventSubURL>
+        <controlURL>/TMSContentDirectory/Control</controlURL>
+      </service>
+      <service>
+        <serviceType>urn:microsoft.com:service:X_MS_MediaReceiverRegistrar:1</serviceType>
+        <serviceId>urn:microsoft.com:serviceId:X_MS_MediaReceiverRegistrar</serviceId>
+        <SCPDURL>/TMSMediaReceiverRegistrar.xml</SCPDURL>
+        <eventSubURL>/TMSMediaReceiverRegistrar/Event</eventSubURL>
+        <controlURL>/TMSMediaReceiverRegistrar/Control</controlURL>
+      </service>
+    </serviceList>
+  </device>
+</root>
+
+<root xmlns="urn:schemas-upnp-org:device-1-0">
+  <specVersion>
+    <major>1</major>
+    <minor>0</minor>
+  </specVersion>
+  <device>
+    <dlna:X_DLNADOC xmlns:dlna="urn:schemas-dlna-org:device-1-0">DMS-1.50</dlna:X_DLNADOC>
+    <dlna:X_DLNADOC xmlns:dlna="urn:schemas-dlna-org:device-1-0">M-DMS-1.50</dlna:X_DLNADOC>
+    <dlna:X_DLNACAP xmlns:dlna="urn:schemas-dlna-org:device-1-0">av-upload,image-upload,audio-upload,create-item-with-OCM-destroy-item</dlna:X_DLNACAP>
+    <pv:extension xmlns:pv="http://www.pv.com/pvns/"></pv:extension>
+    <pv:platformID xmlns:pv="http://www.pv.com/pvns/">Linux 3.2.40; armv7l</pv:platformID>
+    <deviceType>urn:schemas-upnp-org:device:MediaServer:1</deviceType>
+    <UDN>uuid:55076f6e-6b79-4d65-64cf-0090a9e2e286</UDN>
+    <friendlyName>WDMyCloudMirror</friendlyName>
+    <manufacturer>Western Digital Corporation</manufacturer>
+    <manufacturerURL>http://www.wdc.com</manufacturerURL>
+    <modelName>WDMyCloudMirror</modelName>
+    <modelURL>http://products.wd.com/WDMyCloudMirror</modelURL>
+    <modelDescription>2-Bay Personal Cloud Storage</modelDescription>
+    <modelNumber>BZVM</modelNumber>
+    <serialNumber>7.2.9</serialNumber>
+    <UPC></UPC>
+    <presentationURL>http://192.168.179.23:9000/</presentationURL>
+    <iconList>
+      <icon>
+        <mimetype>image/jpeg</mimetype>
+        <height>48</height>
+        <width>48</width>
+        <depth>24</depth>
+        <url>/images/twonkyicon-48x48.jpg</url>
+      </icon>
+      <icon>
+        <mimetype>image/jpeg</mimetype>
+        <height>120</height>
+        <width>120</width>
+        <depth>24</depth>
+        <url>/images/twonkyicon-120x120.jpg</url>
+      </icon>
+      <icon>
+        <mimetype>image/png</mimetype>
+        <height>48</height>
+        <width>48</width>
+        <depth>24</depth>
+        <url>/images/twonkyicon-48x48.png</url>
+      </icon>
+      <icon>
+        <mimetype>image/png</mimetype>
+        <height>120</height>
+        <width>120</width>
+        <depth>24</depth>
+        <url>/images/twonkyicon-120x120.png</url>
+      </icon>
+    </iconList>
+    <serviceList>
+      <service>
+        <serviceType>urn:schemas-upnp-org:service:ConnectionManager:1</serviceType>
+        <serviceId>urn:upnp-org:serviceId:ConnectionManager</serviceId>
+        <SCPDURL>/TMSConnectionManager.xml</SCPDURL>
+        <eventSubURL>/TMSConnectionManager/Event</eventSubURL>
+        <controlURL>/TMSConnectionManager/Control</controlURL>
+      </service>
+      <service>
+        <serviceType>urn:schemas-upnp-org:service:ContentDirectory:1</serviceType>
+        <serviceId>urn:upnp-org:serviceId:ContentDirectory</serviceId>
+        <SCPDURL>/TMSContentDirectory.xml</SCPDURL>
+        <eventSubURL>/TMSContentDirectory/Event</eventSubURL>
+        <controlURL>/TMSContentDirectory/Control</controlURL>
+      </service>
+      <service>
+        <serviceType>urn:microsoft.com:service:X_MS_MediaReceiverRegistrar:1</serviceType>
+        <serviceId>urn:microsoft.com:serviceId:X_MS_MediaReceiverRegistrar</serviceId>
+        <SCPDURL>/TMSMediaReceiverRegistrar.xml</SCPDURL>
+        <eventSubURL>/TMSMediaReceiverRegistrar/Event</eventSubURL>
+        <controlURL>/TMSMediaReceiverRegistrar/Control</controlURL>
+      </service>
+    </serviceList>
+  </device>
+</root>

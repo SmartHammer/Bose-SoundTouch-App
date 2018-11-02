@@ -1,0 +1,53 @@
+TuneIn über
+    GET http://opml.radiotime.com/
+    <opml version="1">
+        <head>
+            <title>Durchstöbern</title>
+            <status>200</status>
+        </head>
+        <body>
+            <outline type="link" text="Lokales Radio" URL="http://opml.radiotime.com/Browse.ashx?c=local" key="local"/>
+            <outline type="link" text="Musik" URL="http://opml.radiotime.com/Browse.ashx?c=music" key="music"/>
+            <outline type="link" text="Talksendungen" URL="http://opml.radiotime.com/Browse.ashx?c=talk" key="talk"/>
+            <outline type="link" text="Sport" URL="http://opml.radiotime.com/Browse.ashx?c=sports" key="sports"/>
+            <outline type="link" text="Orte" URL="http://opml.radiotime.com/Browse.ashx?id=r0" key="location"/>
+            <outline type="link" text="Sprachen" URL="http://opml.radiotime.com/Browse.ashx?c=lang" key="language"/>
+            <outline type="link" text="Podcasts" URL="http://opml.radiotime.com/Browse.ashx?c=podcast" key="podcast"/>
+        </body>
+    </opml>
+<opml version="1">
+    <head>...</head>
+    <body>
+        <outline type="link" text="00's" URL="http://opml.radiotime.com/Browse.ashx?id=g2754" guide_id="g2754"/>
+        <outline type="link" text="50's" URL="http://opml.radiotime.com/Browse.ashx?id=g390" guide_id="g390"/>
+        <outline type="link" text="70er" URL="http://opml.radiotime.com/Browse.ashx?id=c100000783" guide_id="c100000783"/>
+        <outline type="link" text="80er" URL="http://opml.radiotime.com/Browse.ashx?id=c100000781" guide_id="c100000781"/>
+        <outline type="link" text="90er" URL="http://opml.radiotime.com/Browse.ashx?id=c100000946" guide_id="c100000946"/>
+        <outline type="link" text="Adult Contemporary" URL="http://opml.radiotime.com/Browse.ashx?id=c57935" guide_id="c57935"/>
+        <outline type="link" text="Blues" URL="http://opml.radiotime.com/Browse.ashx?id=c100001870" guide_id="c100001870"/>
+        <outline type="link" text="Classic Rock Music" URL="http://opml.radiotime.com/Browse.ashx?id=g54" guide_id="g54"/>
+        <outline type="link" text="Country" URL="http://opml.radiotime.com/Browse.ashx?id=c57940" guide_id="c57940"/>
+        <outline type="link" text="Die 60er" URL="http://opml.radiotime.com/Browse.ashx?id=g407" guide_id="g407"/>
+        <outline type="link" text="Easy Listening" URL="http://opml.radiotime.com/Browse.ashx?id=c10635888" guide_id="c10635888"/>
+        <outline type="link" text="Electro" URL="http://opml.radiotime.com/Browse.ashx?id=c57941" guide_id="c57941"/>
+        <outline type="link" text="Feierliche Musik" URL="http://opml.radiotime.com/Browse.ashx?id=c100001750" guide_id="c100001750"/>
+        <outline type="link" text="Folk" URL="http://opml.radiotime.com/Browse.ashx?id=g79" guide_id="g79"/>
+        <outline type="link" text="Funk Music" URL="http://opml.radiotime.com/Browse.ashx?id=c100002460" guide_id="c100002460"/>
+        <outline type="link" text="Hip Hop" URL="http://opml.radiotime.com/Browse.ashx?id=c57942" guide_id="c57942"/>
+        <outline type="link" text="Hit-Klassiker" URL="http://opml.radiotime.com/Browse.ashx?id=g2755" guide_id="g2755"/>
+        <outline type="link" text="Indie" URL="http://opml.radiotime.com/Browse.ashx?id=c100000952" guide_id="c100000952"/>
+        <outline type="link" text="Jazz" URL="http://opml.radiotime.com/Browse.ashx?id=c57944" guide_id="c57944"/>
+        <outline type="link" text="Kindermusik" URL="http://opml.radiotime.com/Browse.ashx?id=c530749" guide_id="c530749"/>
+        <outline type="link" text="Klassik" URL="http://opml.radiotime.com/Browse.ashx?id=c57939" guide_id="c57939"/>
+        <outline type="link" text="Lateinamerikanische Musik" URL="http://opml.radiotime.com/Browse.ashx?id=c100002533" guide_id="c100002533"/>
+        <outline type="link" text="Musik" URL="http://opml.radiotime.com/Browse.ashx?id=c100000086" guide_id="c100000086"/>
+        <outline type="link" text="R&B-Musik" URL="http://opml.radiotime.com/Browse.ashx?id=g4152" guide_id="g4152"/>
+        <outline type="link" text="Reggae" URL="http://opml.radiotime.com/Browse.ashx?id=g85" guide_id="g85"/>
+        <outline type="link" text="Religiöses" URL="http://opml.radiotime.com/Browse.ashx?id=c57950" guide_id="c57950"/>
+        <outline type="link" text="Rock" URL="http://opml.radiotime.com/Browse.ashx?id=c57951" guide_id="c57951"/>
+        <outline type="link" text="Soul und R&B" URL="http://opml.radiotime.com/Browse.ashx?id=c1367173" guide_id="c1367173"/>
+        <outline type="link" text="Studentenradio" URL="http://opml.radiotime.com/Browse.ashx?id=g6" guide_id="g6"/>
+        <outline type="link" text="Top 40/Pop" URL="http://opml.radiotime.com/Browse.ashx?id=c57943" guide_id="c57943"/>
+        <outline type="link" text="Weltmusik" URL="http://opml.radiotime.com/Browse.ashx?id=g22" guide_id="g22"/>
+    </body>
+</opml>

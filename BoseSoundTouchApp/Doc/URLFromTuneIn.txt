@@ -1,0 +1,53 @@
+﻿http://tunein.com/radio/<ItemName>-<sNUmber> from now_running
+
+javascript:(
+function()
+{
+	var url = "";
+	var r = false;
+	try
+	{
+		url = TuneIn.payload.Program.broadcast.StreamUrl;
+		r = confirm("Station JSON URL successfully retrieved. Opening now.");
+		if(r) 
+		{
+			window.open(url);
+		}
+	}
+	catch(e) 
+	{
+		try 
+		{
+			url = TuneIn.payload.Program.broadcast.StreamUrl;
+			r = confirm("Station JSON URL successfully retrieved. Opening now.");
+			if(r) 
+			{
+				window.open(url);
+			}
+		}
+		catch(ee) 
+		{
+			alert("No TuneIn Station Detected");
+		}
+	}
+})
+()
+
+
+javascript:(
+function()
+{
+	try
+	{
+		var data = JSON.parse(document.getElementsByTagName("PRE")[0].innerHTML);
+		data.Streams.forEach(function(element) 
+		{
+			prompt(element.Badwidth + "kbps: ", element.Url);
+		});
+	}
+	catch(err) 
+	{
+		alert = "This is not a valid TuneIn metadata page."
+	}
+})
+()

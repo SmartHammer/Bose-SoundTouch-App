@@ -1,0 +1,71 @@
+﻿<Page
+    x:Class="BoseSoundTouchApp.Views.InfoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:viewModels="using:BoseSoundTouchApp.ViewModels"
+    xmlns:controls="using:BoseSoundTouchApp.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    RequestedTheme="Light"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.DataContext>
+        <viewModels:InfoPageViewModel x:Name="vm"/>
+    </Page.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="100" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0" Grid.Row="0" Source="/Assets/Bose.png" Margin="5, -110"/>
+        <Viewbox Grid.Column="1" Grid.Row="0" Stretch="Uniform" Margin="20,-10,100,0">
+            <TextBlock Name="TitleText" 
+                       Text="{Binding Title, FallbackValue=Bose SoundTouch App}" 
+                       VerticalAlignment="Top" 
+                       HorizontalAlignment="Center"
+                       FontWeight="Bold">
+                <TextBlock.Foreground>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="DarkBlue" Offset="0.0"/>
+                        <GradientStop Color="LightBlue" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+            </TextBlock>
+        </Viewbox>
+        <Grid Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <controls:InProgress Color="DarkBlue" HorizontalAlignment="Center" Grid.Column="0" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" >
+                <controls:InProgress.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="4" ScaleY="4"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </controls:InProgress.RenderTransform>
+            </controls:InProgress>
+        </Grid>
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.5*" />
+            </Grid.ColumnDefinitions>
+            <Canvas Name="FoundDevices">
+            </Canvas>
+            <Viewbox Grid.Column="1" Margin="10">
+                <TextBlock Grid.Column="1" 
+                           Text="{Binding Footer, FallbackValue=searching}" 
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Right"
+                           Foreground="DarkBlue"
+                           FontSize="30"
+                           FontWeight="Bold"/>
+            </Viewbox>
+        </Grid>
+    </Grid>
+</Page>

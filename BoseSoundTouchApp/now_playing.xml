@@ -1,0 +1,118 @@
+
+<nowPlaying deviceID="606405F5FD71" source="STORED_MUSIC" sourceAccount="55076f6e-6b79-4d65-64cf-0090a9e2e286/0">
+<ContentItem source="STORED_MUSIC" location="0$1$15$150$36852$36854" sourceAccount="55076f6e-6b79-4d65-64cf-0090a9e2e286/0" isPresetable="true">
+<itemName>Hollywood Vampires (Deluxe)</itemName>
+</ContentItem>
+<track>The Last Vampire</track>
+<artist>The Hollywood Vampires</artist>
+<album>Hollywood Vampires (Deluxe)</album>
+<offset>0</offset>
+<art artImageStatus="IMAGE_PRESENT">
+http://192.168.179.23:9000/disk/DLNA-PNJPEG_TN-OP01-CI1-FLAGS00d00000/defaultalbumart/a_u_d_i_o.jpg/O0$1$8I12637441.jpg?scale=160x160
+</art>
+<time total="95">15</time>
+<skipEnabled/>
+<playStatus>PLAY_STATE</playStatus>
+<shuffleSetting>SHUFFLE_OFF</shuffleSetting>
+<repeatSetting>REPEAT_OFF</repeatSetting>
+<skipPreviousEnabled/>
+</nowPlaying>
+
+<nowPlaying deviceID="606405F5FD71" source="TUNEIN" sourceAccount="">
+<ContentItem source="TUNEIN" type="stationurl" location="/v1/playback/station/s125938" sourceAccount="" isPresetable="true">
+<itemName>ROCK ANTENNE Classic Perlen</itemName>
+<containerArt>
+http://cdn-profiles.tunein.com/s125938/images/logoq.jpg
+</containerArt>
+</ContentItem>
+<track>ROCK ANTENNE Classic Perlen</track>
+<artist>Saga - The Flyer</artist>
+<album/>
+<stationName>ROCK ANTENNE Classic Perlen</stationName>
+<art artImageStatus="IMAGE_PRESENT">http://cdn-albums.tunein.com/gn/XG411LV162g.jpg</art>
+<favoriteEnabled/>
+<playStatus>PLAY_STATE</playStatus>
+<streamType>RADIO_STREAMING</streamType>
+</nowPlaying>
+
+<nowPlaying deviceID="A81B6AC48026" source="TUNEIN" sourceAccount="">
+<ContentItem source="TUNEIN" type="stationurl" location="/v1/playback/station/s102909" sourceAccount="" isPresetable="true">
+<itemName>Argovia Classic Rock</itemName>
+<containerArt>
+http://cdn-profiles.tunein.com/s102909/images/logoq.png?t=151792
+</containerArt>
+</ContentItem>
+<track>Argovia Classic Rock</track>
+<artist>REO Speedwagon - Keep Pushin'</artist>
+<album/>
+<stationName>Argovia Classic Rock</stationName>
+<art artImageStatus="IMAGE_PRESENT">http://cdn-albums.tunein.com/gn/H9CQ4WG7R0g.jpg</art>
+<favoriteEnabled/>
+<playStatus>PLAY_STATE</playStatus>
+<streamType>RADIO_STREAMING</streamType>
+</nowPlaying>
+
+<nowPlaying deviceID="A81B6AC48026" source="TUNEIN" sourceAccount="">
+<ContentItem source="TUNEIN" type="stationurl" location="/v1/playback/station/s108444" sourceAccount="" isPresetable="true">
+<itemName>Antenne Vorarlberg Classic Rock</itemName>
+<containerArt>http://cdn-radiotime-logos.tunein.com/s108444q.png</containerArt>
+</ContentItem>
+<track>Antenne Vorarlberg Classic Rock</track>
+<artist>Joe Cocker - Don't you love me anymore</artist>
+<album/>
+<stationName>Antenne Vorarlberg Classic Rock</stationName>
+<art artImageStatus="IMAGE_PRESENT">http://cdn-albums.tunein.com/gn/B0TXBWJ6RNg.jpg</art>
+<favoriteEnabled/>
+<playStatus>PLAY_STATE</playStatus>
+<streamType>RADIO_STREAMING</streamType>
+</nowPlaying>
+
+<nowPlaying deviceID="A81B6AC48026" source="BLUETOOTH" sourceAccount="">
+<ContentItem source="BLUETOOTH" location="" sourceAccount="" isPresetable="false">
+<itemName>iPad von Andrea</itemName>
+</ContentItem>
+<track>This Is Where You Can Reach Me Now</track>
+<artist>U2</artist>
+<album>Songs of Innocence</album>
+<stationName>iPad von Andrea</stationName>
+<art artImageStatus="SHOW_DEFAULT_IMAGE"/>
+<skipEnabled/>
+<playStatus>PLAY_STATE</playStatus>
+<skipPreviousEnabled/>
+<genre>Rock</genre>
+<connectionStatusInfo status="CONNECTED" deviceName="iPad von Andrea"/>
+</nowPlaying>
+
+<nowPlaying deviceID="606405F5FD71" source="PRODUCT" sourceAccount="TV">
+<ContentItem source="PRODUCT" sourceAccount="TV" isPresetable="false"/>
+<art artImageStatus="SHOW_DEFAULT_IMAGE"/>
+<playStatus>PLAY_STATE</playStatus>
+</nowPlaying>
+
+<nowPlaying deviceID="9884E3A03E8E" source="AUX">
+<ContentItem source="AUX" sourceAccount="AUX" isPresetable="true">
+<itemName>AUX IN</itemName>
+</ContentItem>
+<playStatus>PLAY_STATE</playStatus>
+</nowPlaying>
+
+<nowPlaying deviceID="9884E3A03E8E" source="INTERNET_RADIO">
+<ContentItem source="INTERNET_RADIO" location="34163" sourceAccount="" isPresetable="true">
+<itemName>ROCK ANTENNE Classic Perlen</itemName>
+<containerArt>
+http://item.radio456.com/007452/logo/logo-34163.jpg
+</containerArt>
+</ContentItem>
+<track/>
+<artist/>
+<album/>
+<stationName>ROCK ANTENNE Classic Perlen</stationName>
+<art artImageStatus="IMAGE_PRESENT">
+http://item.radio456.com/007452/logo/logo-34163.jpg
+</art>
+<playStatus>PLAY_STATE</playStatus>
+<description>
+MP3 128 kbps Internet Only, ROCK ANTENNE Classic Perlen
+</description>
+<stationLocation>Internet Only</stationLocation>
+</nowPlaying>

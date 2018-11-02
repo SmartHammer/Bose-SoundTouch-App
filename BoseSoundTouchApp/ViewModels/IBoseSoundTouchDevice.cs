@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BoseSoundTouchApp.ViewModels
+{
+    public interface IBoseSoundTouchDevice
+    {
+        string ImagePath
+        {
+            get;
+        }
+
+        string Name
+        {
+            get;
+        }
+    }
+}
