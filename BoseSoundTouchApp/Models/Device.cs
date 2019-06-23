@@ -30,27 +30,24 @@ namespace BoseSoundTouchApp.Models
             IDevice device = null;
             if (Uri.IsWellFormedUriString(physicalData.XmlDescriptionPath, UriKind.RelativeOrAbsolute))
             {
-                HttpWebRequest request = WebRequest.Create(physicalData.XmlDescriptionPath) as HttpWebRequest;
-                Task<WebResponse> async_response = request.GetResponseAsync();
-                async_response.Wait();
-                WebResponse response = async_response.Result;
-                var stream = response.GetResponseStream();
-                int length = (int)response.ContentLength;
-                byte[] buffer = new byte[length];
-                int received = 0;
-                while (received < length)
+                using (var client = new WebClient())
                 {
-                    received += stream.Read(buffer, received, length - received);
-                }
-
-                XDocument doc = XDocument.Parse(Encoding.UTF8.GetString(buffer, 0, length));
-                if (isBoseSoundTouchDevice(doc, DeviceType.MediaRenderer))
-                {
-                    device = new BoseSoundTouchDevice(physicalData, doc);
-                }
-                else
-                {
-                    device = new Device(physicalData, doc);
+                    XDocument xDoc = null;
+                    var responseString = client.DownloadString(physicalData.XmlDescriptionPath);
+                    try
+                    {
+                        xDoc = XDocument.Parse(responseString);
+                        if (isBoseSoundTouchDevice(xDoc, DeviceType.MediaRenderer))
+                        {
+                            device = new BoseSoundTouchDevice(physicalData, xDoc);
+                        }
+                        else
+                        {
+                            device = new Device(physicalData, xDoc);
+                        }
+                    }
+                    catch (Exception)
+                    { }
                 }
             }
 

@@ -12,7 +12,6 @@ namespace BoseSoundTouchApp.Services
 {
     public class POST_volume : POST
     {
-
         public POST_volume(IPhysicalData physicalData)
             : base(physicalData)
         {
@@ -22,7 +21,8 @@ namespace BoseSoundTouchApp.Services
         {
             set
             {
-                Post(new Dictionary<string, string> { { "volume", value.ToString() } });
+                POST.Node node = new POST.Node("volume", value.ToString());
+                Post(node);
             }
         }
     }

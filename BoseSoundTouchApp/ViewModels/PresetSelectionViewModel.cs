@@ -1,12 +1,14 @@
 ﻿using BoseSoundTouchApp.Bases;
 using BoseSoundTouchApp.Models;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using Windows.Storage;
+using Windows.UI.Xaml.Input;
 
 namespace BoseSoundTouchApp.ViewModels
 {
@@ -32,6 +34,133 @@ namespace BoseSoundTouchApp.ViewModels
 
         private ObservableCollection<Preset> m_presets = default(ObservableCollection<Preset>);
 
+        private Preset GetPreset(int index)
+        {
+            var presets = (CurrentDevice as Models.IBoseSoundTouchDevice).Presets.Presets;
+            Preset preset = new Preset
+            {
+                Number = (uint)index
+            };
+
+            if (presets.ContainsKey(index))
+            {
+                var p = presets[index];
+                preset.Icon = new Uri(p.ContentItemContainerArt);
+                preset.Name = p.ContentItemName;
+                string result = default(string);
+                string prefix = "ms-appx://" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + "/Assets/";
+                switch (p.Source)
+                {
+                    case "INTERNET_RADIO":
+                        result = "default_source.png";
+                        preset.TypeName = "Internet Radio";
+                        break;
+                    case "PRODUCT":
+                        result = "TV.png";
+                        preset.TypeName = "Product";
+                        break;
+                    case "BLUETOOTH":
+                        result = "bluetooth.png";
+                        preset.TypeName = "Bluetooth";
+                        break;
+                    case "AUX":
+                        result = "aux_input.png";
+                        preset.TypeName = "Aux";
+                        break;
+                    case "TUNEIN":
+                        result = "TuneIn.png";
+                        preset.TypeName = "TuneIn";
+                        break;
+                    case "STORED_MUSIC":
+                        result = "Cloud.png";
+                        preset.TypeName = "Stored Music";
+                        break;
+                    default:
+                        result = "";
+                        preset.TypeName = "unknown";
+                        break;
+                }
+
+                result = prefix + result;
+                if (Uri.IsWellFormedUriString(result, UriKind.RelativeOrAbsolute))
+                {
+                    preset.Type = new Uri(result);
+                }
+            }
+
+            return preset;
+        }
+
+        public void Select(int index)
+        {
+            var presets = (CurrentDevice as Models.IBoseSoundTouchDevice).Presets.Presets;
+            var sourceInfo = (CurrentDevice as Models.IBoseSoundTouchDevice).SourceInfo;
+            var path = "ms-appx://" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + "/Assets/";
+
+            var preset = from p in presets
+                         where p.Value.ContentItemName == sourceInfo.sourceName
+                         select p;
+            if (preset.Count() > 0)
+            {
+                var selected = preset.ElementAt(0).Key;
+                if (selected != index)
+                {
+                    if (presets.ContainsKey(index))
+                    {
+                        (CurrentDevice as Models.IBoseSoundTouchDevice).SelectPreset(index);
+                    }
+                }
+            }
+        }
+
+        public Preset Preset1
+        {
+            get
+            {
+                return GetPreset(1);
+            }
+        }
+
+        public Preset Preset2
+        {
+            get
+            {
+                return GetPreset(2);
+            }
+        }
+
+        public Preset Preset3
+        {
+            get
+            {
+                return GetPreset(3);
+            }
+        }
+
+        public Preset Preset4
+        {
+            get
+            {
+                return GetPreset(4);
+            }
+        }
+
+        public Preset Preset5
+        {
+            get
+            {
+                return GetPreset(5);
+            }
+        }
+
+        public Preset Preset6
+        {
+            get
+            {
+                return GetPreset(6);
+            }
+        }
+
         [Device(CURRENT)]
         [DataMember]
         public ObservableCollection<Preset> Presets
@@ -47,8 +176,10 @@ namespace BoseSoundTouchApp.ViewModels
                 ObservableCollection<Preset> ps = new ObservableCollection<Preset>();
                 for(var i = 0u; i < 6u; ++i)
                 {
-                    var preset = new Preset();
-                    preset.Number = i + 1u;
+                    var preset = new Preset
+                    {
+                        Number = i + 1u
+                    };
                     ps.Add(preset);
                 }
 
@@ -103,6 +234,10 @@ namespace BoseSoundTouchApp.ViewModels
                 {
                     m_presets = ps;
                     OnPropertyChanged();
+                    for (var i = 1; i <= 6; ++i)
+                    {
+                        OnPropertyChanged("Preset" + i.ToString());
+                    }
                 }
             }
         }
@@ -119,7 +254,8 @@ namespace BoseSoundTouchApp.ViewModels
                 return current.Count() > 0 ? current.ElementAt(0) : null;
             }
         }
-        public async System.Threading.Tasks.Task NotifierAsync(object sender, PropertyChangedEventArgs e)
+
+        public async void Notifier(object sender, PropertyChangedEventArgs e)
         {
             string propName = e.PropertyName;
             string deviceId = string.Empty;
@@ -157,10 +293,7 @@ namespace BoseSoundTouchApp.ViewModels
                         if (setters.Count() == 1)
                         {
                             MethodInfo setter = setters.ElementAt(0);
-                            Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
-                            {
-                                setter.Invoke(this, new object[] { null });
-                            });
+                            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => setter.Invoke(this, new object[] { null }));
                         }
                     }
                 }

@@ -41,7 +41,7 @@ namespace BoseSoundTouchApp.Models
         public void Start()
         {
             Devices.Clear();
-            startWorker();
+            StartWorker();
         }
 
         public void Stop()
@@ -52,7 +52,7 @@ namespace BoseSoundTouchApp.Models
         public event DeviceSearcherFinished.Handler SearchFinished;
 
         #region Worker
-        private void startWorker()
+        private void StartWorker()
         {
             Task.Factory.StartNew(async () =>
             {

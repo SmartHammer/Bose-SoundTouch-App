@@ -19,7 +19,7 @@ namespace BoseSoundTouchApp.ViewModels
         private const string CURRENT = "CurrentDevice";
         private IGeneralModel m_model;
         private CoreDispatcher m_dispatcher;
-        private DispatcherTimer m_dispatcherTimer;
+        private readonly DispatcherTimer m_dispatcherTimer;
         #endregion Members
 
         public RunningPageViewModel()
@@ -88,6 +88,11 @@ namespace BoseSoundTouchApp.ViewModels
 
         public CoreDispatcher Dispatcher
         {
+            private get
+            {
+                return m_dispatcher;
+            }
+
             set
             {
                 m_dispatcher = value;
@@ -124,168 +129,167 @@ namespace BoseSoundTouchApp.ViewModels
         }
 
         #region Running Page
-        private string deviceName = default(string);
-        private void SetDeviceName()
-        {
-            var value = (CurrentDevice != null) ? CurrentDevice.DeviceName : string.Empty;
-            if (value != deviceName)
-            {
-                deviceName = value;
-                OnPropertyChanged("DeviceName");
-            }
-        }
+        private string m_deviceName = default(string);
 
         [Device(CURRENT)]
         public string DeviceName
         {
             get
             {
-                return deviceName;
+                return m_deviceName;
+            }
+
+            private set
+            {
+                var deviceName = (CurrentDevice != null) ? CurrentDevice.DeviceName : string.Empty;
+                if (deviceName != m_deviceName)
+                {
+                    m_deviceName = deviceName;
+                    OnPropertyChanged();
+                }
             }
         }
 
-        private Uri dataSource = default(Uri);
-        private void SetDataSource()
-        {
-            var source = (CurrentDevice as Models.IBoseSoundTouchDevice).SourceInfo.source;
-            string result = string.Empty;
-            string prefix = "ms-appx://" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + "/Assets/";
-            switch (source)
-            {
-                case "INTERNET_RADIO":
-                    result = "default_source.png";
-                    break;
-                case "PRODUCT":
-                    result = "TV.png";
-                    break;
-                case "BLUETOOTH":
-                    result = "bluetooth.png";
-                    break;
-                case "AUX":
-                    result = "aux_input.png";
-                    break;
-                case "TUNEIN":
-                    result = "TuneIn.png";
-                    break;
-                case "STORED_MUSIC":
-                    result = "Cloud.png";
-                    break;
-                default:
-                    result = "";
-                    break;
-            }
-
-            result = prefix + result;
-            Uri value = null;
-            if (Uri.IsWellFormedUriString(result, UriKind.RelativeOrAbsolute))
-            {
-                value = new Uri(result);
-            }
-
-            if (value != dataSource)
-            {
-                dataSource = value;
-                OnPropertyChanged("DataSource");
-            }
-        }
+        private Uri m_dataSource = default(Uri);
 
         [Device(CURRENT)]
         public Uri DataSource
         {
             get
             {
-                return dataSource;
+                return m_dataSource;
+            }
+
+            private set
+            {
+                var source = (CurrentDevice as Models.IBoseSoundTouchDevice).SourceInfo.source;
+                string result = string.Empty;
+                string prefix = "ms-appx://" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + "/Assets/";
+                switch (source)
+                {
+                    case "INTERNET_RADIO":
+                        result = "default_source.png";
+                        break;
+                    case "PRODUCT":
+                        result = "TV.png";
+                        break;
+                    case "BLUETOOTH":
+                        result = "bluetooth.png";
+                        break;
+                    case "AUX":
+                        result = "aux_input.png";
+                        break;
+                    case "TUNEIN":
+                        result = "TuneIn.png";
+                        break;
+                    case "STORED_MUSIC":
+                        result = "Cloud.png";
+                        break;
+                    default:
+                        result = "";
+                        break;
+                }
+
+                result = prefix + result;
+                Uri dataSource = null;
+                if (Uri.IsWellFormedUriString(result, UriKind.RelativeOrAbsolute))
+                {
+                    dataSource = new Uri(result);
+                }
+
+                if (dataSource != m_dataSource)
+                {
+                    m_dataSource = dataSource;
+                    OnPropertyChanged();
+                }
             }
         }
 
-        private Uri backgroundImage = default(Uri);
-        private void SetBackgroundImage()
-        {
-            var source = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.art;
-            if (string.IsNullOrEmpty(source) || !Uri.IsWellFormedUriString(source, UriKind.RelativeOrAbsolute))
-            {
-                source = "ms-appx://" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + "/Assets/DefaultBackground.jpg";
-            }
-
-            var value = new Uri(source);
-            if (value != backgroundImage)
-            {
-                backgroundImage = value;
-                OnPropertyChanged("BackgroundImage");
-            }
-        }
+        private Uri m_backgroundImage = default(Uri);
 
         [Device(CURRENT)]
         public Uri BackgroundImage
         {
             get
             {
-                return backgroundImage;
+                return m_backgroundImage;
+            }
+
+            private set
+            {
+                var source = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.art;
+                if (string.IsNullOrEmpty(source) || !Uri.IsWellFormedUriString(source, UriKind.RelativeOrAbsolute))
+                {
+                    source = "ms-appx://" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + "/Assets/DefaultBackground.jpg";
+                }
+
+                var backgroundImage = new Uri(source);
+                if (backgroundImage != m_backgroundImage)
+                {
+                    m_backgroundImage = backgroundImage;
+                    OnPropertyChanged();
+                }
             }
         }
 
-        private Uri speakerIcon = default(Uri);
-        private void SetSpeakerIcon()
-        {
-            var volume = (CurrentDevice as Models.IBoseSoundTouchDevice).Volume;
-            var source = "ms-appx://" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + "/Assets/";
-
-            if (volume.muteenabled)
-            {
-                source += "Mute.png";
-            }
-            else
-            {
-                if ((0 <= volume.targetvolume) && (volume.targetvolume <= 10))
-                {
-                    source += "Volume0.png";
-                }
-                else if ((10 < volume.targetvolume) && (volume.targetvolume <= 40))
-                {
-                    source += "Volume33.png";
-                }
-                else if ((40 < volume.targetvolume) && (volume.targetvolume <= 80))
-                {
-                    source += "Volume66.png";
-                }
-                else
-                {
-                    source += "Volume100.png";
-                }
-            }
-
-            Uri value = null;
-            if (Uri.IsWellFormedUriString(source, UriKind.RelativeOrAbsolute))
-            {
-                value = new Uri(source);
-            }
-
-            if (value != speakerIcon)
-            {
-                speakerIcon = value;
-                OnPropertyChanged("SpeakerIcon");
-            }
-        }
+        private Uri m_speakerIcon = default(Uri);
 
         [Device(CURRENT)]
         public Uri SpeakerIcon
         {
             get
             {
-                return speakerIcon;
+                return m_speakerIcon;
+            }
+
+            private set
+            {
+                var volume = (CurrentDevice as Models.IBoseSoundTouchDevice).Volume;
+                var source = "ms-appx://" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + "/Assets/";
+
+                if (volume.muteenabled)
+                {
+                    source += "Mute.png";
+                }
+                else
+                {
+                    if ((0 <= volume.targetvolume) && (volume.targetvolume <= 10))
+                    {
+                        source += "Volume0.png";
+                    }
+                    else if ((10 < volume.targetvolume) && (volume.targetvolume <= 40))
+                    {
+                        source += "Volume33.png";
+                    }
+                    else if ((40 < volume.targetvolume) && (volume.targetvolume <= 80))
+                    {
+                        source += "Volume66.png";
+                    }
+                    else
+                    {
+                        source += "Volume100.png";
+                    }
+                }
+
+                Uri speakerIon = null;
+                if (Uri.IsWellFormedUriString(source, UriKind.RelativeOrAbsolute))
+                {
+                    speakerIon = new Uri(source);
+                }
+
+                if (speakerIon != m_speakerIcon)
+                {
+                    m_speakerIcon = speakerIon;
+                    OnPropertyChanged();
+                }
             }
         }
 
-        private double volume = default(double);
-        private void SetVolume()
+        private double m_volume = default(double);
+        private void SetVolume(double value)
         {
-
-            var value = (CurrentDevice as Models.IBoseSoundTouchDevice).Volume.targetvolume;
-            if (value != volume)
-            {
-                volume = value;
-                OnPropertyChanged("Volume");
-            }
+            var volume = (CurrentDevice as Models.IBoseSoundTouchDevice).Volume;
+            (CurrentDevice as Models.IBoseSoundTouchDevice).Volume = new Volume(volume.deviceID, (int)value, volume.actualvolume, volume.muteenabled);
         }
 
         [Device(CURRENT)]
@@ -293,39 +297,44 @@ namespace BoseSoundTouchApp.ViewModels
         {
             get
             {
-                return volume;
+                return m_volume;
             }
             set
             {
-                var volume = (CurrentDevice as Models.IBoseSoundTouchDevice).Volume;
-                (CurrentDevice as Models.IBoseSoundTouchDevice).Volume = new Volume(volume.deviceID, (int)value, volume.actualvolume, volume.muteenabled);
+                var volume = (CurrentDevice as Models.IBoseSoundTouchDevice).Volume.targetvolume;
+                if (volume != m_volume)
+                {
+                    m_volume = volume;
+                    OnPropertyChanged();
+                }
             }
         }
 
-        private bool? tuneIn = default(bool?);
-        private void SetTuneIn()
-        {
-            var value = (CurrentDevice as Models.IBoseSoundTouchDevice).SourceInfo.source == "TUNEIN";
-            if (value != tuneIn)
-            {
-                tuneIn = value;
-                OnPropertyChanged("TuneIn");
-                OnPropertyChanged("OtherSource");
-            }
-        }
+        private bool? m_tuneIn = default(bool?);
 
         [Device(CURRENT)]
         public bool TuneIn
         {
             get
             {
-                if (tuneIn != null)
+                if (m_tuneIn != null)
                 {
-                    return tuneIn.Value;
+                    return m_tuneIn.Value;
                 }
                 else
                 {
                     return false;
+                }
+            }
+
+            private set
+            {
+                var tuneIn = (CurrentDevice as Models.IBoseSoundTouchDevice).SourceInfo.source == "TUNEIN";
+                if (tuneIn != m_tuneIn)
+                {
+                    m_tuneIn = tuneIn;
+                    OnPropertyChanged();
+                    OnPropertyChanged("OtherSource");
                 }
             }
         }
@@ -335,9 +344,9 @@ namespace BoseSoundTouchApp.ViewModels
         {
             get
             {
-                if (tuneIn != null)
+                if (m_tuneIn != null)
                 {
-                    return ! tuneIn.Value;
+                    return ! m_tuneIn.Value;
                 }
                 else
                 {
@@ -347,45 +356,46 @@ namespace BoseSoundTouchApp.ViewModels
         }
 
 
-        private Uri presetIcon = default(Uri);
-        private void SetPresetIcon()
-        {
-            var presets = (CurrentDevice as Models.IBoseSoundTouchDevice).Presets;
-            var sourceInfo = (CurrentDevice as Models.IBoseSoundTouchDevice).SourceInfo;
-            var path = "ms-appx://" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + "/Assets/";
-
-            var preset = from p in presets.Presets
-            where p.Value.ContentItemName == sourceInfo.sourceName
-            select p;
-            if (preset.Count() > 0)
-            {
-                var index = preset.ElementAt(0).Key;
-                path += "Preset" + index.ToString() + ".png";
-            }
-            else
-            {
-                path += "Preset.png";
-            }
-
-            Uri value = null;
-            if (Uri.IsWellFormedUriString(path, UriKind.RelativeOrAbsolute))
-            {
-                value = new Uri(path);
-            }
-
-            if (value != presetIcon)
-            {
-                presetIcon = value;
-                OnPropertyChanged("PresetIcon");
-            }
-        }
+        private Uri m_presetIcon = default(Uri);
 
         [Device(CURRENT)]
         public Uri PresetIcon
         {
             get
             {
-                return presetIcon;
+                return m_presetIcon;
+            }
+
+            private set
+            {
+                var presets = (CurrentDevice as Models.IBoseSoundTouchDevice).Presets;
+                var sourceInfo = (CurrentDevice as Models.IBoseSoundTouchDevice).SourceInfo;
+                var path = "ms-appx://" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + "/Assets/";
+
+                var preset = from p in presets.Presets
+                             where p.Value.ContentItemName == sourceInfo.sourceName
+                             select p;
+                if (preset.Count() > 0)
+                {
+                    var index = preset.ElementAt(0).Key;
+                    path += "Preset" + index.ToString() + ".png";
+                }
+                else
+                {
+                    path += "Preset.png";
+                }
+
+                Uri presetIcon = null;
+                if (Uri.IsWellFormedUriString(path, UriKind.RelativeOrAbsolute))
+                {
+                    presetIcon = new Uri(path);
+                }
+
+                if (presetIcon != m_presetIcon)
+                {
+                    m_presetIcon = presetIcon;
+                    OnPropertyChanged();
+                }
             }
         }
         #endregion Running Page
@@ -394,132 +404,96 @@ namespace BoseSoundTouchApp.ViewModels
         #endregion Preset Page
 
         #region Device Selection Page
-        private bool prevousOpacity = default(bool);
-        private void SetPreviousOpacity()
-        {
-            var devices = (from dev in m_model.Devices
-                           where dev is BoseSoundTouchDevice
-                           select dev).OrderBy(dev => dev.UDN).ToList();
-            var current = CurrentDevice;
-            var value = devices.IndexOf(current) != 0;
-            if (value != prevousOpacity)
-            {
-                prevousOpacity = value;
-                OnPropertyChanged("PreviousOpacity");
-            }
-        }
+        private bool m_prevousOpacity = default(bool);
 
         [Device(CURRENT)]
         public bool PreviousOpacity
         {
             get
             {
-                return prevousOpacity;
+                return m_prevousOpacity;
+            }
+
+            private set
+            {
+                var devices = (from dev in m_model.Devices
+                               where dev is BoseSoundTouchDevice
+                               select dev).OrderBy(dev => dev.UDN).ToList();
+                var current = CurrentDevice;
+                var previousOpacity = devices.IndexOf(current) != 0;
+                if (previousOpacity != m_prevousOpacity)
+                {
+                    m_prevousOpacity = previousOpacity;
+                    OnPropertyChanged();
+                }
             }
         }
 
-        private bool nextOpacity = default(bool);
-        private void SetNextOpacity()
-        {
-            var devices = (from dev in m_model.Devices
-                           where dev is BoseSoundTouchDevice
-                           select dev).OrderBy(dev => dev.UDN).ToList();
-            var current = CurrentDevice;
-            var value = devices.IndexOf(current) != (devices.Count() - 1);
-            if (value != nextOpacity)
-            {
-                nextOpacity = value;
-                OnPropertyChanged("NextOpacity");
-            }
-        }
+        private bool m_nextOpacity = default(bool);
 
         [Device(CURRENT)]
         public bool NextOpacity
         {
             get
             {
-                return nextOpacity;
+                return m_nextOpacity;
             }
-        }
 
-        private bool? deviceImageOpacity = default(bool?);
-        private void SetDeviceImageOpacity()
-        {
-            var value = !(CurrentDevice as Models.IBoseSoundTouchDevice).State.standBy;
-            if (value != deviceImageOpacity)
+            private set
             {
-                if ( !value)
+                var devices = (from dev in m_model.Devices
+                               where dev is BoseSoundTouchDevice
+                               select dev).OrderBy(dev => dev.UDN).ToList();
+                var current = CurrentDevice;
+                var nextOpacity = devices.IndexOf(current) != (devices.Count() - 1);
+                if (nextOpacity != m_nextOpacity)
                 {
-                    m_dispatcherTimer.Interval = StandbyTimeout;
-                    m_dispatcherTimer.Start();
+                    m_nextOpacity = nextOpacity;
+                    OnPropertyChanged();
                 }
-                else
-                {
-                    m_dispatcherTimer.Stop();
-                    m_model.Screen.Dimming(false);
-                }
-
-                deviceImageOpacity = value;
-                OnPropertyChanged("DeviceImageOpacity");
             }
         }
+
+        private bool? m_deviceImageOpacity = default(bool?);
 
         [Device(CURRENT)]
         public bool DeviceImageOpacity
         {
             get
             {
-                if (deviceImageOpacity != null)
+                if (m_deviceImageOpacity != null)
                 {
-                    return deviceImageOpacity.Value;
+                    return m_deviceImageOpacity.Value;
                 }
                 else
                 {
                     return false;
                 }
             }
-        }
 
-        private Uri deviceTypeImagePath = default(Uri);
-        private void SetDeviceTypeImagePath()
-        {
-            var current = CurrentDevice;
-            string result = "ST10.png";
-            if (current != null)
+            private set
             {
-                switch (current.DeviceTypeName)
+                var deviceImageOpacity = !(CurrentDevice as Models.IBoseSoundTouchDevice).State.standBy;
+                if (deviceImageOpacity != m_deviceImageOpacity)
                 {
-                    case "SoundTouch 10":
-                        result = "ST10.png";
-                        break;
-                    case "SoundTouch 20":
-                        result = "ST20.png";
-                        break;
-                    case "SoundTouch 30":
-                        result = "ST30.png";
-                        break;
-                    case "SoundTouch 300":
-                        result = "ST300.png";
-                        break;
-                    default:
-                        result = "ST10.png";
-                        break;
+                    if (!deviceImageOpacity)
+                    {
+                        m_dispatcherTimer.Interval = StandbyTimeout;
+                        m_dispatcherTimer.Start();
+                    }
+                    else
+                    {
+                        m_dispatcherTimer.Stop();
+                        m_model.Screen.Dimming(false);
+                    }
+
+                    m_deviceImageOpacity = deviceImageOpacity;
+                    OnPropertyChanged("DeviceImageOpacity");
                 }
             }
-            string prefix = "ms-appx://" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + "/Assets/";
-            result = prefix + result;
-            Uri value = null;
-            if (Uri.IsWellFormedUriString(result, UriKind.RelativeOrAbsolute))
-            {
-                value = new Uri(result);
-            }
-
-            if (value != deviceTypeImagePath)
-            {
-                deviceTypeImagePath = value;
-                OnPropertyChanged("DeviceTypeImagePath");
-            }
         }
+
+        private Uri m_deviceTypeImagePath = default(Uri);
 
         public void VolumeDown()
         {
@@ -540,22 +514,58 @@ namespace BoseSoundTouchApp.ViewModels
         {
             get
             {
-                return deviceTypeImagePath;
+                return m_deviceTypeImagePath;
             }
+
             private set
             {
-                OnPropertyChanged();
+                var current = CurrentDevice;
+                string result = "ST10.png";
+                if (current != null)
+                {
+                    switch (current.DeviceTypeName)
+                    {
+                        case "SoundTouch 10":
+                            result = "ST10.png";
+                            break;
+                        case "SoundTouch 20":
+                            result = "ST20.png";
+                            break;
+                        case "SoundTouch 30":
+                            result = "ST30.png";
+                            break;
+                        case "SoundTouch 300":
+                            result = "ST300.png";
+                            break;
+                        default:
+                            result = "ST10.png";
+                            break;
+                    }
+                }
+                string prefix = "ms-appx://" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + "/Assets/";
+                result = prefix + result;
+                Uri deviceTypeImagePath = null;
+                if (Uri.IsWellFormedUriString(result, UriKind.RelativeOrAbsolute))
+                {
+                    deviceTypeImagePath = new Uri(result);
+                }
+
+                if (deviceTypeImagePath != this.m_deviceTypeImagePath)
+                {
+                    this.m_deviceTypeImagePath = deviceTypeImagePath;
+                    OnPropertyChanged("DeviceTypeImagePath");
+                }
             }
         }
 
         public void PreviousDevice()
         {
-            setNewDevice(-1);
+            SetNewDevice(-1);
         }
 
         public void NextDevice()
         {
-            setNewDevice(+1);
+            SetNewDevice(+1);
         }
 
         public void StartRunningView()
@@ -570,7 +580,13 @@ namespace BoseSoundTouchApp.ViewModels
         {
         }
 
-        private void setNewDevice(int offset)
+        public void OnOff()
+        {
+            var state = (CurrentDevice as Models.IBoseSoundTouchDevice).State.standBy;
+            (CurrentDevice as Models.IBoseSoundTouchDevice).State = new Models.DeviceState(!state);
+        }
+
+        private void SetNewDevice(int offset)
         {
             var devices = (from dev in m_model.Devices
                            where dev is BoseSoundTouchDevice
@@ -610,7 +626,7 @@ namespace BoseSoundTouchApp.ViewModels
         }
         #endregion Device Selection Page
 
-        private void Notifier(object sender, PropertyChangedEventArgs e)
+        private async void Notifier(object sender, PropertyChangedEventArgs e)
         {
             string propName = e.PropertyName;
             string deviceId = string.Empty;
@@ -646,15 +662,13 @@ namespace BoseSoundTouchApp.ViewModels
                         ((depAttr.Device == CURRENT) && (CurrentDevice.UDN == deviceId)) ||
                         (string.Empty == deviceId))
                     {
-                        var setter = from method in GetType().GetRuntimeMethods()
-                                     where method.Name == "Set" + prop.Name
-                                     select method;
-                        if (setter.Count() > 0)
+                        var setters = from accessor in prop.GetAccessors(true)
+                                      where accessor.ReturnType == typeof(void)
+                                      select accessor;
+                        if (setters.Count() == 1)
                         {
-                            m_dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
-                            {
-                                setter.ElementAt(0).Invoke(this, new object[] { });
-                            });
+                            MethodInfo setter = setters.ElementAt(0);
+                            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => setter.Invoke(this, new object[] { null }));
                         }
                     }
                 }
@@ -662,7 +676,7 @@ namespace BoseSoundTouchApp.ViewModels
 
             TuneInViewModel.Notifier(sender, e);
             OthersViewModel.Notifier(sender, e);
-            PresetSelectionViewModel.NotifierAsync(sender, e);
+            PresetSelectionViewModel.Notifier(sender, e);
             DeviceSelectionViewModel.Notifier(sender, e);
         }
     }

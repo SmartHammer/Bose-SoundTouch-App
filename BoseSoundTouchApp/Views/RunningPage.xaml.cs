@@ -70,16 +70,12 @@ namespace BoseSoundTouchApp.Views
             PreviousDevice.Tapped += new TappedEventHandler((o, e) =>
             {
                 (DataContext as ViewModels.RunningPageViewModel).PreviousDevice();
-                m_timer.Stop();
-                m_timer.Interval = AutoDeactivateTime;
-                m_timer.Start();
+                RestartTimer();
             });
             NextDevice.Tapped += new TappedEventHandler((o, e) =>
             {
                 (DataContext as ViewModels.RunningPageViewModel).NextDevice();
-                m_timer.Stop();
-                m_timer.Interval = AutoDeactivateTime;
-                m_timer.Start();
+                RestartTimer();
             });
             Loaded += new RoutedEventHandler((o, e) =>
             {
@@ -97,6 +93,18 @@ namespace BoseSoundTouchApp.Views
             {
                 (DataContext as ViewModels.RunningPageViewModel).VolumeUp();
             });
+            OnOff.Tapped += new TappedEventHandler((o, e) =>
+            {
+                (DataContext as ViewModels.RunningPageViewModel).OnOff();
+                RestartTimer();
+            });
+        }
+
+        private void RestartTimer()
+        {
+            m_timer.Stop();
+            m_timer.Interval = AutoDeactivateTime;
+            m_timer.Start();
         }
 
         private TimeSpan AutoDeactivateTime => TimeSpan.FromSeconds(10.0);

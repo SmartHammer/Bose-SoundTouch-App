@@ -28,254 +28,283 @@ namespace BoseSoundTouchApp.ViewModels
             set;
         }
 
-        private bool? tuneIn = default(bool?);
-        private void SetTuneIn()
-        {
-            var value = (CurrentDevice as Models.IBoseSoundTouchDevice).SourceInfo.source == "TUNEIN";
-            if (value != tuneIn)
-            {
-                tuneIn = value;
-                OnPropertyChanged("TuneIn");
-                OnPropertyChanged("OtherSource");
-            }
-        }
-
+        private bool? m_tuneIn = default(bool?);
         [Device(CURRENT)]
         public bool TuneIn
         {
             get
             {
-                if (tuneIn != null)
+                if (m_tuneIn != null)
                 {
-                    return tuneIn.Value;
+                    return m_tuneIn.Value;
                 }
                 else
                 {
                     return false;
                 }
             }
-        }
 
-        private string track = default(string);
-        private void SetTrack()
-        {
-            var value = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.track;
-            if ( ! string.IsNullOrEmpty(value))
+            set
             {
-                if ((value.Length > 15) && value.Contains(" ("))
+                var tunein = (CurrentDevice as Models.IBoseSoundTouchDevice).SourceInfo.source == "TUNEIN";
+                if (tunein != m_tuneIn)
                 {
-                    value = value.Replace(" (", "\n(");
+                    m_tuneIn = tunein;
+                    OnPropertyChanged();
+                    OnPropertyChanged("OtherSource");
                 }
             }
-            else
-            {
-                value = string.Empty;
-            }
-
-            if (value != track)
-            {
-                track = value;
-                OnPropertyChanged("Track");
-            }
         }
+
+        private string m_track = default(string);
 
         [Device(CURRENT)]
         public string Track
         {
             get
             {
-                return track;
+                return m_track;
             }
-        }
 
-        private string artist = default(string);
-        private void SetArtist()
-        {
-            var value = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.artist;
-
-            if (value != artist)
+            private set
             {
-                artist = value;
-                OnPropertyChanged("Artist");
+                var track = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.track;
+                if (!string.IsNullOrEmpty(track))
+                {
+                    if ((track.Length > 15) && track.Contains(" ("))
+                    {
+                        track = track.Replace(" (", "\n(");
+                    }
+                }
+                else
+                {
+                    track = string.Empty;
+                }
+
+                if (track != m_track)
+                {
+                    m_track = track;
+                    OnPropertyChanged();
+                }
             }
         }
+
+        private string m_artist = default(string);
 
         [Device(CURRENT)]
         public string Artist
         {
             get
             {
-                return artist;
+                return m_artist;
+            }
+
+            private set
+            {
+                var artist = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.artist;
+
+                if (artist != m_artist)
+                {
+                    m_artist = artist;
+                    OnPropertyChanged();
+                }
             }
         }
 
-        private Uri art = default(Uri);
-        private void SetArt()
-        {
-            Uri value = null;
-            switch ((CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.art_status)
-            {
-                case ART_STATUS.IMAGE_PRESENT:
-                    var _ = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.art;
-                    if (Uri.IsWellFormedUriString(_, UriKind.RelativeOrAbsolute))
-                    {
-                        value = new Uri(_);
-                    }
-                    break;
-                case ART_STATUS.SHOW_DEFAULT_IMAGE:
-                    break;
-                case ART_STATUS.DOWNLOADING:
-                    break;
-                case ART_STATUS.INVALID:
-                default:
-                    break;
-            }
-
-            if (value != art)
-            {
-                art = value;
-                OnPropertyChanged("Art");
-            }
-        }
+        private Uri m_art = default(Uri);
 
         [Device(CURRENT)]
         public Uri Art
         {
             get
             {
-                return art;
+                return m_art;
             }
-        }
 
-        private string album = default(string);
-        private void SetAlbum()
-        {
-            var value = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.album;
-
-            if (value != album)
+            private set
             {
-                album = value;
-                OnPropertyChanged("Album");
+                Uri art = null;
+                switch ((CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.art_status)
+                {
+                    case ART_STATUS.IMAGE_PRESENT:
+                        var _ = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.art;
+                        if (Uri.IsWellFormedUriString(_, UriKind.RelativeOrAbsolute))
+                        {
+                            art = new Uri(_);
+                        }
+                        break;
+                    case ART_STATUS.SHOW_DEFAULT_IMAGE:
+                        break;
+                    case ART_STATUS.DOWNLOADING:
+                        break;
+                    case ART_STATUS.INVALID:
+                    default:
+                        break;
+                }
+
+                if (art != m_art)
+                {
+                    m_art = art;
+                    OnPropertyChanged();
+                }
             }
         }
+
+        private string m_album = default(string);
 
         [Device(CURRENT)]
         public string Album
         {
             get
             {
-                return album;
+                return m_album;
+            }
+
+            private set
+            {
+                var album = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.album;
+
+                if (album != m_album)
+                {
+                    m_album = album;
+                    OnPropertyChanged();
+                }
             }
         }
 
-        private string currentTime = default(string);
-        private void SetCurrentTime()
-        {
-            var time = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.time.ToString(@"mm\:ss");
-            if (currentTime != time)
-            {
-                currentTime = time;
-                OnPropertyChanged("CurrentTime");
-            }
-        }
+        private string m_currentTime = default(string);
 
         [Device(CURRENT)]
         public string CurrentTime
         {
             get
             {
-                return currentTime;
+                return m_currentTime;
+            }
+
+            private set
+            {
+                var time = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.time.ToString(@"mm\:ss");
+                if (m_currentTime != time)
+                {
+                    m_currentTime = time;
+                    OnPropertyChanged();
+                }
             }
         }
 
-        private string totalTime = default(string);
-        private void SetTotalTime()
-        {
-            var time = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.timeTotal.ToString(@"mm\:ss");
-            if (totalTime != time)
-            {
-                totalTime = time;
-                OnPropertyChanged("TotalTime");
-            }
-        }
+        private string m_totalTime = default(string);
 
         [Device(CURRENT)]
         public string TotalTime
         {
             get
             {
-                return totalTime;
+                return m_totalTime;
+            }
+
+            private set
+            {
+                var time = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.timeTotal.ToString(@"mm\:ss");
+                if (m_totalTime != time)
+                {
+                    m_totalTime = time;
+                    OnPropertyChanged();
+                }
             }
         }
 
-        private double? progress = default(double?);
-        private void SetProgress()
-        {
-            var time = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.time;
-            var total = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.timeTotal;
-            var value = time.TotalSeconds / total.TotalSeconds * 100.0;
-            if (value != progress)
-            {
-                progress = value;
-                OnPropertyChanged("Progress");
-            }
-        }
+        private double? m_progress = default(double?);
 
         [Device(CURRENT)]
         public double Progress
         { 
             get
             {
-                if (progress != null)
+                if (m_progress != null)
                 {
-                    return progress.Value;
+                    return m_progress.Value;
                 }
                 else
                 {
                     return 0.0;
                 }
             }
+
+            private set
+            {
+                var time = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.time;
+                var total = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.timeTotal;
+                var progress = time.TotalSeconds / total.TotalSeconds * 100.0;
+                if (progress != m_progress)
+                {
+                    m_progress = progress;
+                    OnPropertyChanged();
+                }
+            }
         }
-        private Uri playState = default(Uri);
-        private void SetPlayState()
+
+        private bool m_progressApplicable = default(bool);
+        [Device(CURRENT)]
+        public bool ProgressApplicable
         {
-            var state = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.playStatus;
-            var source = "ms-appx://" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + "/Assets/";
-            switch (state)
+            get
             {
-                case PLAY_STATUS.PLAY_STATE:
-                    source += "Play.png";
-                    break;
-                case PLAY_STATUS.PAUSE_STATE:
-                    source += "Pause.png";
-                    break;
-                case PLAY_STATUS.STOP_STATE:
-                    source += "Stop.png";
-                    break;
-                default:
-                    source += "Stop.png";
-                    break;
+                return m_progressApplicable;
             }
 
-            Uri value = null;
-            if (Uri.IsWellFormedUriString(source, UriKind.RelativeOrAbsolute))
+            private set
             {
-                value = new Uri(source);
-            }
-
-            if (value != playState)
-            {
-                playState = value;
-                OnPropertyChanged("PlayState");
+                var progressApplicable = TimeSpan.Zero != (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.timeTotal;
+                if (progressApplicable != m_progressApplicable)
+                {
+                    m_progressApplicable = progressApplicable;
+                    OnPropertyChanged();
+                }
             }
         }
+
+        private Uri m_playState = default(Uri);
 
         [Device(CURRENT)]
         public Uri PlayState
         {
             get
             {
-                return playState;
+                return m_playState;
+            }
+
+            private set
+            {
+                var state = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.playStatus;
+                var source = "ms-appx://" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + "/Assets/";
+                switch (state)
+                {
+                    case PLAY_STATUS.PLAY_STATE:
+                        source += "Play.png";
+                        break;
+                    case PLAY_STATUS.PAUSE_STATE:
+                        source += "Pause.png";
+                        break;
+                    case PLAY_STATUS.STOP_STATE:
+                        source += "Stop.png";
+                        break;
+                    default:
+                        source += "Stop.png";
+                        break;
+                }
+
+                Uri playState = null;
+                if (Uri.IsWellFormedUriString(source, UriKind.RelativeOrAbsolute))
+                {
+                    playState = new Uri(source);
+                }
+
+                if (playState != m_playState)
+                {
+                    m_playState = playState;
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -292,7 +321,7 @@ namespace BoseSoundTouchApp.ViewModels
             }
         }
 
-        public void Notifier(object sender, PropertyChangedEventArgs e)
+        public async void Notifier(object sender, PropertyChangedEventArgs e)
         {
             string propName = e.PropertyName;
             string deviceId = string.Empty;
@@ -324,15 +353,13 @@ namespace BoseSoundTouchApp.ViewModels
                         ((depAttr.Device == CURRENT) && (CurrentDevice.UDN == deviceId)) ||
                         (string.Empty == deviceId))
                     {
-                        var setter = from method in GetType().GetRuntimeMethods()
-                                     where method.Name == "Set" + prop.Name
-                                     select method;
-                        if (setter.Count() > 0)
+                        var setters = from accessor in prop.GetAccessors(true)
+                                      where accessor.ReturnType == typeof(void)
+                                      select accessor;
+                        if (setters.Count() == 1)
                         {
-                            Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
-                            {
-                                setter.ElementAt(0).Invoke(this, new object[] { });
-                            });
+                            MethodInfo setter = setters.ElementAt(0);
+                            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => setter.Invoke(this, new object[] { null }));
                         }
                     }
                 }

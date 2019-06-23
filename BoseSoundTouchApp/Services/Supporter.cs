@@ -5,11 +5,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
-using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 
@@ -22,24 +20,15 @@ namespace BoseSoundTouchApp.Services
             string url = "http://" + ipAddress.ToString() + ":8090";
             string requestString = url + "/" + serviceName;
             XDocument doc = null;
-            //while (null == doc)
+            using (var client = new WebClient())
             {
-                HttpWebRequest request = HttpWebRequest.Create(requestString) as HttpWebRequest;
-                Task<WebResponse> async_response = request.GetResponseAsync();
-                async_response.Wait();
-                WebResponse response = async_response.Result;
-                var stream = response.GetResponseStream();
-                byte[] buffer = new byte[16384];
-                int received = stream.Read(buffer, 0, buffer.Length);
-                string text = Encoding.UTF8.GetString(buffer, 0, received);
+                var responseString = client.DownloadString(requestString);
                 try
                 {
-                    doc = XDocument.Parse(text);
+                    doc = XDocument.Parse(responseString);
                 }
-                catch (Exception al)
-                {
-                    doc = null;
-                }
+                catch(Exception)
+                {}
             }
 
             return doc;
@@ -48,17 +37,18 @@ namespace BoseSoundTouchApp.Services
         public static Image GetImage(string url)
         {
             Image image = new Image();
-            var httpClient = new HttpClient();
-            var request = httpClient.GetStreamAsync(url);
-            request.Wait();
-            Stream st = request.Result;
-            var memoryStream = new MemoryStream();
-            var copyRequest = st.CopyToAsync(memoryStream);
-            copyRequest.Wait();
-            memoryStream.Position = 0;
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.SetSource(memoryStream.AsRandomAccessStream());
-            image.Source = bitmap;
+            using (var client = new WebClient())
+            {
+                var data = client.DownloadData(url);
+                BitmapImage dib;
+                using (var stream = new MemoryStream(data))
+                {
+                    dib = new BitmapImage();
+                    dib.SetSource(stream.AsRandomAccessStream());
+                    image.Source = dib;
+                }
+            }
+
             return image;
         }
 

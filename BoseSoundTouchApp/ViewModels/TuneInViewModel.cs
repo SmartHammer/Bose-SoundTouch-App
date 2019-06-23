@@ -27,185 +27,191 @@ namespace BoseSoundTouchApp.ViewModels
             set;
         }
 
-        private bool? tuneIn = default(bool?);
-        private void SetTuneIn()
-        {
-            var value = (CurrentDevice as Models.IBoseSoundTouchDevice).SourceInfo.source == "TUNEIN";
-            if (value != tuneIn)
-            {
-                tuneIn = value;
-                OnPropertyChanged("TuneIn");
-                OnPropertyChanged("OtherSource");
-            }
-        }
+        private bool? m_tuneIn = default(bool?);
 
         [Device(CURRENT)]
         public bool TuneIn
         {
             get
             {
-                if (tuneIn != null)
+                if (m_tuneIn != null)
                 {
-                    return tuneIn.Value;
+                    return m_tuneIn.Value;
                 }
                 else
                 {
                     return false;
                 }
             }
-        }
 
-        private string track = default(string);
-        private void SetTrack()
-        {
-            var value = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.artist;
-            if (!string.IsNullOrEmpty(value))
+            set
             {
-                var parts = value.Split(" - ");
-                if (parts.Count() > 1)
+                var tuneIn = (CurrentDevice as Models.IBoseSoundTouchDevice).SourceInfo.source == "TUNEIN";
+                if (tuneIn != m_tuneIn)
                 {
-                    value = parts[1];
-                    if ((value.Length > 15) && value.Contains(" (") )
-                    {
-                        value = value.Replace(" (", "\n(");
-                    }
+                    m_tuneIn = tuneIn;
+                    OnPropertyChanged();
+                    OnPropertyChanged("OtherSource");
                 }
             }
-            else
-            {
-                value = string.Empty;
-            }
-
-            if (value != track)
-            {
-                track = value;
-                OnPropertyChanged("Track");
-            }
         }
+
+        private string m_track = default(string);
 
         [Device(CURRENT)]
         public string Track
         {
             get
             {
-                return track;
+                return m_track;
             }
-        }
 
-        private string artist = default(string);
-        private void SetArtist()
-        {
-            var value = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.artist;
-            if (!string.IsNullOrEmpty(value))
+            private set
             {
-                var parts = value.Split(" - ");
-                if (parts.Count() > 1)
+                var track = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.artist;
+                if (!string.IsNullOrEmpty(track))
                 {
-                    value = parts[0];
+                    var parts = track.Split(" - ");
+                    if (parts.Count() > 1)
+                    {
+                        track = parts[1];
+                        if ((track.Length > 15) && track.Contains(" ("))
+                        {
+                            track = track.Replace(" (", "\n(");
+                        }
+                    }
+                }
+                else
+                {
+                    track = string.Empty;
+                }
+
+                if (track != m_track)
+                {
+                    m_track = track;
+                    OnPropertyChanged();
                 }
             }
-            else
-            {
-                value = string.Empty;
-            }
-
-            if (value != artist)
-            {
-                artist = value;
-                OnPropertyChanged("Artist");
-            }
         }
+
+        private string m_artist = default(string);
 
         [Device(CURRENT)]
         public string Artist
         {
             get
             {
-                return artist;
+                return m_artist;
             }
-        }
 
-        private Uri art = default(Uri);
-        private void SetArt()
-        {
-            Uri value = null;
-            switch ((CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.art_status)
+            private set
             {
-                case ART_STATUS.IMAGE_PRESENT:
-                    var _ = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.art;
-                    if (Uri.IsWellFormedUriString(_, UriKind.RelativeOrAbsolute))
+                var artist = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.artist;
+                if (!string.IsNullOrEmpty(artist))
+                {
+                    var parts = artist.Split(" - ");
+                    if (parts.Count() > 1)
                     {
-                        value = new Uri(_);
+                        artist = parts[0];
                     }
-                    break;
-                case ART_STATUS.SHOW_DEFAULT_IMAGE:
-                    break;
-                case ART_STATUS.DOWNLOADING:
-                    break;
-                case ART_STATUS.INVALID:
-                default:
-                    break;
-            }
+                }
+                else
+                {
+                    artist = string.Empty;
+                }
 
-            if (value != art)
-            {
-                art = value;
-                OnPropertyChanged("Art");
+                if (artist != m_artist)
+                {
+                    m_artist = artist;
+                    OnPropertyChanged();
+                }
             }
         }
+
+        private Uri m_art = default(Uri);
 
         [Device(CURRENT)]
         public Uri Art
         {
             get
             {
-                return art;
+                return m_art;
+            }
+
+            private set
+            {
+                Uri art = null;
+                switch ((CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.art_status)
+                {
+                    case ART_STATUS.IMAGE_PRESENT:
+                        var _ = (CurrentDevice as Models.IBoseSoundTouchDevice).TrackInfo.art;
+                        if (Uri.IsWellFormedUriString(_, UriKind.RelativeOrAbsolute))
+                        {
+                            art = new Uri(_);
+                        }
+                        break;
+                    case ART_STATUS.SHOW_DEFAULT_IMAGE:
+                        break;
+                    case ART_STATUS.DOWNLOADING:
+                        break;
+                    case ART_STATUS.INVALID:
+                    default:
+                        break;
+                }
+
+                if (art != m_art)
+                {
+                    m_art = art;
+                    OnPropertyChanged();
+                }
             }
         }
 
-        private Uri stationIcon = default(Uri);
-        private void SetStationIcon()
-        {
-            Uri value = null;
-            var art = (CurrentDevice as Models.IBoseSoundTouchDevice).SourceInfo.sourceArt;
-            if (Uri.IsWellFormedUriString(art, UriKind.RelativeOrAbsolute))
-            {
-                value = new Uri(art);
-            }
-
-            if (value != stationIcon)
-            {
-                stationIcon = value;
-                OnPropertyChanged("StationIcon");
-            }
-        }
+        private Uri m_stationIcon = default(Uri);
 
         [Device(CURRENT)]
         public Uri StationIcon
         {
             get
             {
-                return stationIcon;
+                return m_stationIcon;
+            }
+
+            private set
+            {
+                Uri stationIcon = null;
+                var art = (CurrentDevice as Models.IBoseSoundTouchDevice).SourceInfo.sourceArt;
+                if (Uri.IsWellFormedUriString(art, UriKind.RelativeOrAbsolute))
+                {
+                    stationIcon = new Uri(art);
+                }
+
+                if (stationIcon != m_stationIcon)
+                {
+                    m_stationIcon = stationIcon;
+                    OnPropertyChanged();
+                }
             }
         }
 
-        private string stationName = default(string);
-        private void SetStationName()
-        {
-            var value = (CurrentDevice as Models.IBoseSoundTouchDevice).SourceInfo.sourceName;
-            if(value != stationName)
-            {
-                stationName = value;
-                OnPropertyChanged("StationName");
-            }
-        }
+        private string m_stationName = default(string);
 
         [Device(CURRENT)]
         public string StationName
         {
             get
             {
-                return stationName;
+                return m_stationName;
+            }
+
+            private set
+            {
+                var stationName = (CurrentDevice as Models.IBoseSoundTouchDevice).SourceInfo.sourceName;
+                if (stationName != m_stationName)
+                {
+                    m_stationName = stationName;
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -222,7 +228,7 @@ namespace BoseSoundTouchApp.ViewModels
             }
         }
 
-        public void Notifier(object sender, PropertyChangedEventArgs e)
+        public async void Notifier(object sender, PropertyChangedEventArgs e)
         {
             string propName = e.PropertyName;
             string deviceId = string.Empty;
@@ -254,15 +260,13 @@ namespace BoseSoundTouchApp.ViewModels
                         ((depAttr.Device == CURRENT) && (CurrentDevice.UDN == deviceId)) ||
                         (string.Empty == deviceId))
                     {
-                        var setter = from method in GetType().GetRuntimeMethods()
-                                     where method.Name == "Set" + prop.Name
-                                     select method;
-                        if (setter.Count() > 0)
+                        var setters = from accessor in prop.GetAccessors(true)
+                                      where accessor.ReturnType == typeof(void)
+                                      select accessor;
+                        if (setters.Count() == 1)
                         {
-                            Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
-                            {
-                                setter.ElementAt(0).Invoke(this, new object[] { });
-                            });
+                            MethodInfo setter = setters.ElementAt(0);
+                            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => setter.Invoke(this, new object[] { null }));
                         }
                     }
                 }

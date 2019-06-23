@@ -54,7 +54,7 @@
             <Grid Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 
             </Grid>
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" Visibility="{Binding ProgressApplicable, FallbackValue=Collapsed}" >
                 <Grid.Background>
                     <SolidColorBrush Color="DimGray" Opacity="0.5" />
                 </Grid.Background>

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Windows.Devices.Enumeration;
-using Windows.Devices.I2c;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 

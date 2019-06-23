@@ -13,13 +13,16 @@ namespace BoseSoundTouchApp.Models
     public class Screen : NotiferClass, IScreen
     {
         private const int TimeoutSeconds = 1;
+#if false
         private const int DimmingCycleTimeInMS = 100;
-        private I2cDevice m_i2CDevice;
+#endif
         private const double DefaultBrightness = 100;
         private double currentBrightness = DefaultBrightness;
-        private CancellationTokenSource m_cancelToken;
+        private I2cDevice m_i2CDevice;
+        private readonly CancellationTokenSource m_cancelToken;
+#if false
         private Task<Task> m_dimmingTask;
-
+#endif
         public Screen()
         {
             m_cancelToken = new CancellationTokenSource(new TimeSpan(0, 0, TimeoutSeconds));
@@ -35,27 +38,31 @@ namespace BoseSoundTouchApp.Models
             }
         }
 
+        public double CurrentBrightness { get => currentBrightness; set => currentBrightness = value; }
+
         public void Dimming(bool down)
         {
             SetBrightness(down ? 0.0 : 100.0);
-            //double value = currentBrightness;
-            //double target = down ? 0.0 : DefaultBrightness;
-            //double increment = (target - value) / (3000 / DimmingCycleTimeInMS);
-            //m_dimmingTask = Task.Factory.StartNew(async () =>
-            //{
-            //    while (Math.Abs(target - value) > Math.Abs(increment))
-            //    {
-            //        value += increment;
-            //        SetBrightness(value);
-            //        if (Math.Abs(target - value) < increment)
-            //        {
-            //            value = target;
-            //        }
+#if false
+            double value = currentBrightness;
+            double target = down ? 0.0 : DefaultBrightness;
+            double increment = (target - value) / (3000 / DimmingCycleTimeInMS);
+            m_dimmingTask = Task.Factory.StartNew(async () =>
+            {
+                while (Math.Abs(target - value) > Math.Abs(increment))
+                {
+                    value += increment;
+                    SetBrightness(value);
+                    if (Math.Abs(target - value) < increment)
+                    {
+                        value = target;
+                    }
 
-            //        await Task.Delay(DimmingCycleTimeInMS);
-            //    }
-            //},
-            //m_cancelToken.Token);
+                    await Task.Delay(DimmingCycleTimeInMS);
+                }
+            },
+            m_cancelToken.Token);
+#endif
         }
 
         private async void InitializeAsync()

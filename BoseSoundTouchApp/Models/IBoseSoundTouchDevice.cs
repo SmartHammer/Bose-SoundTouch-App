@@ -8,6 +8,7 @@ namespace BoseSoundTouchApp.Models
         IDeviceState State
         {
             get;
+            set;
         }
 
         IVolume Volume
@@ -32,5 +33,7 @@ namespace BoseSoundTouchApp.Models
         }
 
         void Initialize();
+
+        void SelectPreset(int index);
     }
 }

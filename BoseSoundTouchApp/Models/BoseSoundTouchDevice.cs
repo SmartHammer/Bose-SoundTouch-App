@@ -12,8 +12,8 @@ namespace BoseSoundTouchApp.Models
     public class BoseSoundTouchDevice : Device, IBoseSoundTouchDevice
     {
         #region Members
-        private CancellationTokenSource m_cancelToken;
-        private Dictionary<Type, object> m_services;
+        private readonly CancellationTokenSource m_cancelToken;
+        private readonly Dictionary<Type, object> m_services;
         private List<object> m_updateServices;
         #endregion Members
 
@@ -26,10 +26,10 @@ namespace BoseSoundTouchApp.Models
             RegisterService(typeof(Services.GET_presets));
             m_cancelToken = new CancellationTokenSource();
             m_updateServices = new List<object>();
-            prepareUpdater();
+            PrepareUpdater();
         }
 
-        private void prepareUpdater()
+        private void PrepareUpdater()
         {
             var properities = GetType().GetProperties(
                 BindingFlags.DeclaredOnly |
@@ -85,8 +85,10 @@ namespace BoseSoundTouchApp.Models
             }
             set
             {
-                var service = new Services.POST_volume(PhysicalData);
-                service.Volume = value.targetvolume;
+                Services.POST_volume service = new Services.POST_volume(PhysicalData)
+                {
+                    Volume = value.targetvolume
+                };
             }
         }
 
@@ -128,6 +130,14 @@ namespace BoseSoundTouchApp.Models
                 var service = (GetService(typeof(Services.GET_now_playing)) as Services.GET_now_playing);
                 return new DeviceState(service.source == "STANDBY");
             }
+            set
+            {
+                Services.POST_key service = new Services.POST_key(PhysicalData)
+                {
+                    Key = new Services.POST_key.KeyType(Services.POST_key.KeyType.Keys.POWER, Services.POST_key.KeyType.States.PRESS)
+                };
+                service.Key = new Services.POST_key.KeyType(Services.POST_key.KeyType.Keys.POWER, Services.POST_key.KeyType.States.RELEASE);
+            }
         }
         #endregion Properties
 
@@ -143,9 +153,17 @@ namespace BoseSoundTouchApp.Models
             return result;
         }
 
+        public void SelectPreset(int index)
+        {
+            Services.POST_key service = new Services.POST_key(PhysicalData)
+            {
+                Key = new Services.POST_key.KeyType(Services.POST_key.KeyType.Keys.PRESET_1 + index - 1, Services.POST_key.KeyType.States.RELEASE)
+            };
+        }
+
         public void Initialize()
         {
-            startWorker();
+            StartWorker();
         }
 
         public new void Dispose()
@@ -203,7 +221,7 @@ namespace BoseSoundTouchApp.Models
         #endregion Methods
 
         #region Worker
-        private void startWorker()
+        private void StartWorker()
         {
             var maxCycleTimeInMS = (m_updateServices.OrderByDescending(item => (item as Services.GET).CycleTimeInMS).First() as Services.GET).CycleTimeInMS;
             var cycleTimeInMS = maxCycleTimeInMS;
