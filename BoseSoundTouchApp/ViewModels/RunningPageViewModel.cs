@@ -497,16 +497,12 @@ namespace BoseSoundTouchApp.ViewModels
 
         public void VolumeDown()
         {
-            var value = Volume;
-            value -= 1.0;
-            Volume = Math.Max(value, 0.0);
+            SetVolume(Math.Max(0.0, Volume - 1.0));
         }
 
         public void VolumeUp()
         {
-            var value = Volume;
-            value += 1.0;
-            Volume = Math.Min(value, 100.0);
+            SetVolume(Math.Min(100.0, Volume + 1.0));
         }
 
         [Device(ALL)]
