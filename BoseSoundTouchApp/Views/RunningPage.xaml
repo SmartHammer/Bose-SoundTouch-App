@@ -43,6 +43,7 @@
                 Duration="0:0:1"/>
         </Storyboard>
         <cvt:BoolToOpacityConverter x:Name="Bool2Opacity" />
+        <cvt:DateTimeToStringConverter x:Name="DateTime2String" />
     </Page.Resources>
     <Grid>
         <Canvas Background="White">
@@ -68,7 +69,9 @@
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
                     <Image Name="MenuSelection"  Grid.Column="0" Source="/Assets/Menu.png" Height="80"/>
+                    <TextBlock Name="Time" Grid.Column="1" Text="{Binding DateTime, FallbackValue=12:00, Converter={StaticResource DateTime2String}, ConverterParameter=Time}" Foreground="DarkBlue" FontSize="58" HorizontalAlignment="Center" FontFamily="/Fonts/digital7mi.ttf#Digital-7 Mono" VerticalAlignment="Center" FontWeight="ExtraBlack"/>
                     <Image Name="Source" Grid.Column="2" Source="{Binding DataSource, FallbackValue=/Assets/default_source.png}" Height="80" />
+                    <TextBlock Name="Date" Grid.Column="3" Text="{Binding DateTime, FallbackValue=24.12.2019, Converter={StaticResource DateTime2String}, ConverterParameter=Date}" Foreground="DarkBlue" FontSize="32" HorizontalAlignment="Center" FontFamily="/Fonts/digital7mi.ttf#Digital-7 Mono" VerticalAlignment="Center" FontWeight="ExtraBlack"/>
                     <Image Name="PresetSelection" Grid.Column="5" Source="{Binding PresetIcon, UpdateSourceTrigger=PropertyChanged, FallbackValue=/Assets/Preset.png}" Height="80"/>
                 </Grid>
                 <ctl:TuneInView DataContext="{Binding TuneInViewModel, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsEnabled="{Binding TuneIn}" Opacity="{Binding TuneIn,FallbackValue=1.0, Converter={StaticResource Bool2Opacity}, ConverterParameter=1.0;0.0}"/>

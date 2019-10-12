@@ -111,6 +111,7 @@
     <Compile Include="Controls\TuneInView.xaml.cs">
       <DependentUpon>TuneInView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\DateTimeToStringConverter.cs" />
     <Compile Include="Converter\StringFormatConverter.cs" />
     <Compile Include="Converter\BoolToOpacityConverter.cs" />
     <Compile Include="GlobalSuppressions.cs" />
@@ -202,12 +203,10 @@
     <Content Include="Assets\VolumeMinus.png" />
     <Content Include="Assets\VolumePlus.png" />
     <Content Include="Doc\URLFromTuneIn.txt" />
-    <Content Include="Fonts\DSEG14Classic-Bold.ttf" />
-    <Content Include="Fonts\DSEG14Classic-BoldItalic.ttf" />
-    <Content Include="Fonts\DSEG14Classic-Italic.ttf" />
-    <Content Include="Fonts\DSEG14Classic-Light.ttf" />
-    <Content Include="Fonts\DSEG14Classic-Regular.ttf" />
-    <Content Include="Fonts\DSEG14Classic-RegularItalic.ttf" />
+    <Content Include="Fonts\digital7i.ttf" />
+    <Content Include="Fonts\digital7mi.ttf" />
+    <Content Include="Fonts\digital7m.ttf" />
+    <Content Include="Fonts\digital7.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\aux_input.png" />

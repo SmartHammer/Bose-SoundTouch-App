@@ -20,6 +20,7 @@ namespace BoseSoundTouchApp.ViewModels
         private IGeneralModel m_model;
         private CoreDispatcher m_dispatcher;
         private readonly DispatcherTimer m_dispatcherTimer;
+        private readonly DispatcherTimer m_clockTimer;
         #endregion Members
 
         public RunningPageViewModel()
@@ -34,6 +35,16 @@ namespace BoseSoundTouchApp.ViewModels
                 m_dispatcherTimer.Stop();
                 m_model.Screen.Dimming(true);
             });
+            m_clockTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(1.0)
+            };
+            m_clockTimer.Tick += new EventHandler<object>((o, e) =>
+            {
+                DateTime = DateTime.Now;
+            }
+            );
+            m_clockTimer.Start();
         }
 
         public void Initialize()
@@ -398,6 +409,24 @@ namespace BoseSoundTouchApp.ViewModels
                 }
             }
         }
+
+        private DateTime m_dateTime = DateTime.Now;
+        public DateTime DateTime
+        {
+            get
+            {
+                return m_dateTime;
+            }
+            set
+            {
+                if ((value != m_dateTime) && ((value.ToString("HH.mm") != m_dateTime.ToString("HH.mm"))))
+                {
+                    m_dateTime = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         #endregion Running Page
         #endregion Properties
         #region Preset Page

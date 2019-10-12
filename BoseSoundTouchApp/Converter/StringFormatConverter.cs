@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Globalization;
 using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Media;
 
 namespace BoseSoundTouchApp.Converter
 {
